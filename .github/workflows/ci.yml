@@ -32,8 +32,8 @@ jobs:
 
       - name: Executar testes
         run: |
-          poetry run pytest
-
+          PYTHONPATH=$(pwd) poetry run pytest tests --log-cli-level=INFO
+  
   deploy:
     needs: test
     runs-on: ubuntu-latest
