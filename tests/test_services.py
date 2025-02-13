@@ -1,6 +1,6 @@
 import pytest
 from app.models.schemas import EstudoInput, Materia
-from app.services.criar_plano_estudo import criar_plano_estudo
+from app.services.calcular_divisao_tempo import calcular_divisao_tempo
 from fastapi.exceptions import HTTPException
 
 def test_calcular_plano_estudo():
@@ -12,7 +12,7 @@ def test_calcular_plano_estudo():
         }
     )
 
-    resultado = criar_plano_estudo(dados)
+    resultado = calcular_divisao_tempo(dados)
     
     assert resultado.horas_disponiveis == 4
     assert resultado.minutos_disponives == 240
@@ -25,7 +25,7 @@ def test_calcular_plano_estudo_sem_materias():
     dados = EstudoInput(horas_disponiveis=4, materias_estudo={})
 
     with pytest.raises(HTTPException) as exc:
-        criar_plano_estudo(dados)
+        calcular_divisao_tempo(dados)
     
     assert exc.value.status_code == 400
     assert exc.value.detail == "A soma dos scores das matérias não pode ser zero."
