@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from app.models.schemas import EstudoInput, EstudoOutput, MateriaOutput
 
-def calcular_plano_de_estudo(dados: EstudoInput) -> EstudoOutput:
+def criar_plano_estudo(dados: EstudoInput) -> EstudoOutput:
     total_horas = dados.horas_disponiveis
     total_minutos = total_horas * 60
 
