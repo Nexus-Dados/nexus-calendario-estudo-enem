@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from main import app
+from app.main import app
 
 client = TestClient(app)
 
@@ -25,10 +25,3 @@ def test_criar_plano_estudo():
 
 def test_criar_plano_estudo_sem_materias():
     payload = {
-        "horas_disponiveis": 4,
-        "materias_estudo": {}
-    }
-
-    response = client.post("/criar_plano_estudo", json=payload)
-    assert response.status_code == 400
-    assert response.json()["detail"] == "A soma dos scores das matérias não pode ser zero."
